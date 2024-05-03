@@ -50,9 +50,8 @@ export class Adapter extends EventEmitter {
   /**
    * In-memory adapter constructor.
    *
-   * @param {Namespace} nsp
    */
-  constructor(readonly nsp: any) {
+  constructor(readonly nsp: import('socket.io/lib').Namespace) {
     super();
     this.encoder = nsp.server.encoder;
   }
@@ -328,7 +327,7 @@ export class Adapter extends EventEmitter {
     });
   }
 
-  private apply(opts: BroadcastOptions, callback: (socket) => void): void {
+  private apply(opts: BroadcastOptions, callback: (socket: import('socket.io/lib').Socket) => void): void {
     const rooms = opts.rooms;
     const except = this.computeExceptSids(opts.except);
 
