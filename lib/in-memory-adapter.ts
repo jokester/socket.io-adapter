@@ -42,6 +42,12 @@ interface SessionToPersist {
 
 export type Session = SessionToPersist & { missedPackets: unknown[][] };
 
+/**
+ * An adapter:
+ * 1. manages Rooms and Sockets in them: (`addAll`, `del`, `delAll`, `broadcast`, `sockets`, `socketRooms`)
+ * 2. keeps sockets
+ * 2. sends packets to Sockets: `addAll
+ */
 export class Adapter extends EventEmitter {
   public rooms: Map<Room, Set<SocketId>> = new Map();
   public sids: Map<SocketId, Set<Room>> = new Map();
